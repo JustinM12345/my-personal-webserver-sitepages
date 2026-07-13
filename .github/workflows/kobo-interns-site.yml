@@ -11,7 +11,7 @@ name: Publish Docker image
 
 on:
   push:
-    paths: 'kobo-interns.xyz'
+    paths: 'kobo-interns.xyz/**'
 
 jobs:
   push_to_registry:
