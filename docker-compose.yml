@@ -30,7 +30,7 @@ services:
 
   # Kobo-interns.xyz httpd/apache application
   kobo-interns.xyz:
-    build: ./kobo-interns.xyz/
+    image: juggin123/kobo-interns-site:main
     expose:
       - "8081"
     environment:
@@ -39,9 +39,9 @@ services:
       - web-proxy
     restart: unless-stopped
 
-  # Kobo-interns.xyz httpd/apache application
+  # Justin.kobo-interns.xyz nodejs application
   justin.kobo-interns.xyz:
-    build: ./justin.kobo-interns.xyz/
+    image: juggin123/justin-kobo-interns-site:main
     expose:
       - "8082"
     environment:
