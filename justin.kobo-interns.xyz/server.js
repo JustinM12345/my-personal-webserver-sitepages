@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/images', express.static(path.join(__dirname ,'/public_html/', 'what-is-the-time/', 'images')));
-app.get('/what-is-the-time/?', (req, res) => {
+app.get('/what-is-the-time', (req, res) => {
   res.sendFile(path.join(__dirname , '/public_html', '/what-is-the-time/', 'index.html'));
   
 });
