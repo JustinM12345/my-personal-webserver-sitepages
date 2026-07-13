@@ -1,35 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Server Time</title>
+        <title>Welcome to justin.kobo-interns.xyz!</title>
     </head>
     <body>
-        <h1>Server Time</h1>
+        <h1>Hi there! No server time here... just a greeting :)</h1>
+        <br>
+        I'll give you a hint though... what-is-the-time ???? testingtesting
     </body>
-
-    <img src="images/rome_rabbit.png" alt="Rome Rabbit" style="width:256px;height:256px;">
-
-    <br>
-    <br>
-
-    <script language="javascript">
-        let urlString = window.location.href;
-        let paramString = urlString.split('?')[1];
-        let queryString = new URLSearchParams(paramString);
-        var localTime = new Date();
-        var count = 0;
-
-        for (pair of queryString.entries()){
-            if (pair[0] == "name") {
-                document.write("Hi " + pair[1] + "! The time is " + localTime + "<br>");
-                count++;
-                break;
-            }
-        }
-        if (count == 0){
-            document.write("Hi mysterious stranger! The time is: " + localTime + "<br>");
-        }
-        // document.write("Server time is: " + date);
-        document.write("Heres a change to the docker image");
-    </script>
 </html>
