@@ -1,0 +1,24 @@
+# docker-compose.yml
+services:
+  apache:
+    image: httpd:2.4
+    container_name: kobo-interns.xyz
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+			# static content
+      - ./public_html:/usr/local/apache2/htdocs/:ro
+			# Custom Apache Configuration
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+			# Additional config files
+			# not needed
+			# SSL Certificates
+			# not needed
+			# Logs
+			# not needed
+    healthcheck:
+      test: ["CMD", "httpd", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

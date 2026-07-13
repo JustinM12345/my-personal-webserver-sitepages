@@ -1,0 +1,59 @@
+# docker-compose.yml - Multi-site hosting with Nginx reverse proxy
+services:
+  # Nginx reverse proxy - the traffic router
+  nginx-proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "8443:443"
+    volumes:
+      - ./nginx-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-proxy/conf.d:/etc/nginx/conf.d:ro
+      # Mount let's encrypt certificates
+      - certbot_certs:/etc/letsencrypt:ro
+      # Mount the ACME challenge directory
+      - certbot_www:/var/www/certbot:ro
+    networks:
+      - web-proxy
+    restart: unless-stopped
+    depends_on:
+      - kobo-interns.xyz
+      - justin.kobo-interns.xyz
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+    - certbot_certs:/etc/letsencrypt
+    - certbot_www:/var/www/certbot
+    # Check for certficiate renewals every 12 hours
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot; sleep 12h & wait $${!}; done'"
+
+  # Kobo-interns.xyz httpd/apache application
+  kobo-interns.xyz:
+    build: ./kobo-interns.xyz/
+    expose:
+      - "8081"
+    environment:
+      HTTPD_ENV: production
+    networks:
+      - web-proxy
+    restart: unless-stopped
+
+  # Kobo-interns.xyz httpd/apache application
+  justin.kobo-interns.xyz:
+    build: ./justin.kobo-interns.xyz/
+    expose:
+      - "8082"
+    environment:
+      NODE_ENV: production
+    networks:
+      - web-proxy
+    restart: unless-stopped
+
+volumes:
+  certbot_certs:
+  certbot_www:
+
+networks:
+  web-proxy:
+    external: true
