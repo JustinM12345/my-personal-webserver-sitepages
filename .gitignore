@@ -2,3 +2,4 @@ certbot_certs
 certbot_www
 localhost
 .env*
+auto-pull-logs.txt
