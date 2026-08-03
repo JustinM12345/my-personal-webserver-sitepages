@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
     depends_on:
       - kobo-interns.xyz
-      - justin.kobo-interns.xyz
+      - justin-node
 
   certbot:
     image: certbot/certbot
