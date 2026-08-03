@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
 
   # Justin.kobo-interns.xyz nodejs application
-  justin.kobo-interns.xyz:
+  justin-node:
     image: juggin123/justin-kobo-interns-site:main
     expose:
       - "8082"
