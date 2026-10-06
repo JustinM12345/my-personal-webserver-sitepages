@@ -1,4 +1,4 @@
-# Kobo Interns Site
+# My Personal Webserver (Site Pages)
 
 A small personal side project built to learn the basics of web hosting, deployment, and reverse proxy setup.
 
